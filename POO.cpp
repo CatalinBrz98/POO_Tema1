@@ -26,7 +26,6 @@ public:
     friend nr_i_mari convert(int n);
     friend int convert_back(nr_i_mari a);
     int nr_cif();
-    int get_s();
 };
 class nr_r_mari{
 private:
@@ -397,10 +396,6 @@ int nr_i_mari::nr_cif()
     }
     return k;
 }
-int nr_i_mari::get_s()
-{
-    return s;
-}
 nr_r_mari::nr_r_mari()
 {
     k=1;
@@ -438,13 +433,15 @@ nr_r_mari nr_r_mari::operator * (nr_r_mari &b)
 }
 nr_r_mari nr_r_mari::operator + (nr_r_mari &b)
 {
-    int dif=this->i.nr_cif()-b.i.nr_cif();
+    int dif=i.nr_cif()-b.i.nr_cif();
     nr_i_mari a=convert(dif);
     a=a+e;
     a=a-b.e;
     int n=convert_back(a);
-    if(n>30)
-        if(a.get_s()==-1)
+    if(n>30 || n<-30)
+    {
+        std::cout<<"DA";
+        if(a.s==-1)
         {
             nr_i_mari aux=convert(0);
             nr_r_mari r;
@@ -462,6 +459,7 @@ nr_r_mari nr_r_mari::operator + (nr_r_mari &b)
             r.k=0;
             return r;
         }
+    }
     n=n-dif;
     if(n<0)
     {
