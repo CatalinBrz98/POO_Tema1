@@ -4,6 +4,7 @@ char c;
 nod *urm,*tr;
 };
 class nr_i_mari{
+    friend class nr_r_mari;
 private:
     nod *x;
     char s,k;
@@ -28,7 +29,6 @@ public:
     int get_s();
 };
 class nr_r_mari{
-    friend class nr_i_mari;
 private:
     nr_i_mari i,e;
     char k;
